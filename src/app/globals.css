@@ -1,1 +1,11 @@
-@import "tailwindcss";
+@tailwind utilities;
+
+/* Ensure font variable is applied */
+:root {
+  --font-barlow: "Barlow", sans-serif;
+}
+
+/* Custom utility to apply Barlow */
+.font-barlow {
+  font-family: var(--font-barlow);
+}
