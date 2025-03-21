@@ -4,7 +4,19 @@ import { Inter, Barlow } from "next/font/google";
 
 // Global css
 import "./globals.css";
+
+//Theme provider
 import { ThemeProvider } from "next-themes";
+
+//Clerk
+import {
+  ClerkProvider,
+  // SignInButton,
+  // SignUpButton,
+  // SignedIn,
+  // SignedOut,
+  // UserButton,
+} from "@clerk/nextjs";
 
 //Fonts
 const interFont = Inter({ subsets: ["latin"] });
@@ -27,17 +39,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${interFont.className} ${barlowFont.variable} light`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${interFont.className} ${barlowFont.variable} light`}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
